@@ -1,6 +1,6 @@
 header:
   - title:      主页
-    url:        /test/
+    url:        /
   - title:      文档
     url:        /docs/en/quick-start
     key:        docs
