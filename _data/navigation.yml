@@ -2,7 +2,7 @@ header:
   - title:      主页
     url:        /
   - title:      文档
-    url:        /_posts/*
+    url:        ../_posts/*
     key:        docs
   - title:      杂项
     url:        /samples.html

@@ -1,5 +1,5 @@
 ---
-layout: 关于我
+layout: 关于
 tags: 杂项
 ---
 
