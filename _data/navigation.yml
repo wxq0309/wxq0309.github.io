@@ -3,10 +3,10 @@ header:
     url:        /
   - title:      文档
     url:        /docs.html
-    # key:        文档
+    key:        文档
   - title:      杂项
     url:        /samples.html
-    # key:        samples
+    key:        samples
   - title:      归档
     url:        /archive.html
   - title:      关于
