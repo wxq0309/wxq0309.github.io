@@ -118,7 +118,7 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
   # gitalk:
   #   clientID    : "1eff9f76994295d4a701"
   #   clientSecret: "ba6c2c060df23997b42e250ff7a50b4c0b8acfee"
