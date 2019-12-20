@@ -3,7 +3,7 @@ header:
     url:        /
   - title:      文档
     url:        /docs.html
-    key:        文档
+    key:        docs
   - title:      杂项
     url:        /samples.html
     key:        samples
