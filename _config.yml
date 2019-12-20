@@ -139,7 +139,9 @@ comments:
     clientSecret: ba6c2c060df23997b42e250ff7a50b4c0b8acfee # GitHub Application Client Secret
     repository  : wxq0309/wxq0309.github.io # GitHub repo
     owner       : wxq0309 # GitHub repo owner
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+    admin: 
+      - 44604781
+    # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       # - your GitHub Id
 
   ## Valine
