@@ -137,7 +137,7 @@ comments:
   gitalk:
     clientID    : 1eff9f76994295d4a701 # GitHub Application Client ID
     clientSecret: ba6c2c060df23997b42e250ff7a50b4c0b8acfee # GitHub Application Client Secret
-    repository  : doubanSpider # GitHub repo
+    repository  : wxq0309/doubanSpider # GitHub repo
     owner       : wxq0309 # GitHub repo owner
     admin: 
       - 44604781
