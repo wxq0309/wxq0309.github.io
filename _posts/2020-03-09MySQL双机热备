@@ -1,0 +1,95 @@
+### MySQL双机热备
+
+##### 1. 准备两台服务器（虚拟机也可以）
+
+```
+A: 1.1.1.1 
+B: 2.2.2.2
+两台服务器均安装同一版本的MySQL数据库，其中将A作为master, B服务器作为slave。
+两台服务器中准备好相同的数据(可利用mysqldump进行数据的迁移)
+```
+
+##### 2. 配置master服务器（1.1.1.1）
+
+```
+登陆MySQL数据库
+mysql -u xxx -p xxx 
+
+建立主从数据库同步账户
+mysql> grant replication slave on *.* to 'broot'@'2.2.2.2' identified by 'broot';
+mysql> flush privileges;
+
+当创建好用户后，可在B服务器上进行测试 
+mysql -h 1.1.1.1 -u "broot" -p "broot"
+若出现正常登陆进MySQL的情况则表明两台服务器可正常通信。
+
+```
+
+##### 3. 配置master服务器的MySQL配置文件
+
+```
+当第二步的操作执行完成后，我们可以对master服务器的配置文件进行更改。
+
+文件路径一般是在 /etc/mysql/my.cnf 或者 /etc/my.cnf
+
+打开my.cnf配置文件后找到 【mysqld】模块，更改以下内容：
+
+[mysqld]
+server-id = 1　　　　　　　 //唯一id
+log-bin=mysql-bin         //指定日志文件
+binlog-do-db = test　　　　//记录日志的数据库
+binlog-ignore-db = mysql  //不记录日志的数据库
+```
+
+##### 4. 重启MySQL服务
+
+```
+service mysql restart
+
+重启完成后进行MySQL数据库，通过指令查看master的状态：
+mysql> show master status;
+
+执行完成后会返回四个字段，特别前面两个File和Position，在从服务器（Slave）配置主从关系会有用到的。
+```
+
+##### 5. Slave服务器配置
+
+```
+修改MySQL配置文件，即修改 /etc/mysql/my.cnf 文件
+
+[mysqld]
+server-id = 2 # 此项不可同master相同
+log-bin=mysql-bin 
+replicate-do-db = test
+replicate-ignore-db = mysql
+
+
+修改完成后重启MySQL服务即可
+```
+
+##### 6. 修改同步位置（关键）
+
+```
+当通过命令进入MySQL后，输入下面的指令：
+mysql> stop slave;
+mysql> change master to master_host='1.1.1.1',master_user='broot',master_password='broot',master_log_file=' mysql-bin.000001 ',master_log_pos=154;
+
+mysql> start slave;
+
+注：master_log_file, master_log_pos由主服务器（Master）查出的状态值中确定。也就是刚刚叫注意的。master_log_file对应File, master_log_pos对应Position。Mysql 5.x以上版本已经不支持在配置文件中指定主服务器相关选项。
+
+执行：
+mysql> show slave status \G;
+
+查看下面两项值均为Yes，即表示设置从服务器成功。
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+
+```
+
+##### 7. 测试同步
+
+```
+当上面的步骤完成后，只需要在A服务器的数据库中做操作，B数据库将会自动同步过来。
+```
+
