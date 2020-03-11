@@ -1,10 +1,10 @@
 header:
   - title:      主页
     url:        /
-  - title:      文档
-    url:        /docs.html
   - title:      归档
     url:        /archive.html
+  - title:      关于
+    url:        /about.html
   - title:      Github
     url:        https://github.com/wxq0309
 
