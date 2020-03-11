@@ -17,11 +17,8 @@ titles:
   ko-KR   : *KO
 key: page-about
 ---
+```
+关于我：
+  我是谁？ -- 咳咳，我是何大仙，主要技术栈 Python Golang。
+```
 
-### 关于我们！！！
-
-Just say something about yourself. :+1:
-
-{% highlight javascript %}
-(() => console.log('hello, world!'))();
-{% endhighlight %}
