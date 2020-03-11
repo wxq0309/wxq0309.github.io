@@ -124,9 +124,8 @@ comments:
      clientSecret: "ba6c2c060df23997b42e250ff7a50b4c0b8acfee"
      repository  : "wxq0309.github.io"
      owner       : "wxq0309"
-     admin: "44604781"
-     # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
-      # - "44604781"
+     admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
+      - "44604781"
 
   ## Disqus
   disqus:
