@@ -122,7 +122,7 @@ comments:
   gitalk:
      clientID    : "1eff9f76994295d4a701"
      clientSecret: "ba6c2c060df23997b42e250ff7a50b4c0b8acfee"
-     repository  : "wxq0309/wxq0309.github.io"
+     repository  : "fastapi"
      owner       : "wxq0309"
      admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
        - "44604781"
