@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: about
 titles:
   en      : &EN       About
   en-GB   : *EN
