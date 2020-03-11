@@ -22,7 +22,7 @@ url     : # the base hostname & protocol for your site e.g. https://www.someone.
 baseurl : # does not include hostname
 title   : 何大仙
 description: > # this means to ignore newlines until "Language & timezone"
-  A website with awesome stories.
+  大仙掐指一算，发现未来可期
 
 
 ## => Language and Timezone
@@ -119,14 +119,13 @@ sharing:
 ##############################
 comments:
   provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
-  # gitalk:
-  #   clientID    : "1eff9f76994295d4a701"
-  #   clientSecret: "ba6c2c060df23997b42e250ff7a50b4c0b8acfee"
-  #   repository  : "github-repo"
-  #   owner       : "github-repo-owner"
-  #   admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
-  #     - "your-github-id"
-  #     - "the-other-admin-github-id"
+  gitalk:
+     clientID    : "1eff9f76994295d4a701"
+     clientSecret: "ba6c2c060df23997b42e250ff7a50b4c0b8acfee"
+     repository  : "wxq0309/wxq0309.github.io"
+     owner       : "wxq0309"
+     admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
+       - "44604781"
 
   ## Disqus
   disqus:
