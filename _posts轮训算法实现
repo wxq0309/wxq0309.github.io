@@ -1,0 +1,86 @@
+---
+titie: 简单轮训算法实现
+author: 何大仙人掌
+pageview: true
+tags: algorithm
+articles:
+  excerpt_type: html
+---
+
+
+#### 轮询算法概念通俗理解
+Round-Robin Scheduling 轮询是为了实现不同资源使用的公平、不同资源负载均衡（e.g. 服务器），是面向资源的公平。
+
+#### 代码实现
+ 
+```python
+# -*- encoding: utf-8 -*-
+from enum import Enum
+
+
+class ServerStatus(Enum):
+    ERROR = 0
+    NORMAL = 1
+    RECOVERY = 2
+
+
+class NoWeightRoundRobin:
+    def __init__(self, servers: int = 5):
+        self.servers = [(i, 1) for i in range(servers)]
+        self.current_servers = -1
+
+    def run(self):
+        print(f"总共有{len(self.servers)}台服务器，开始等待新的请求调度")
+        while len([i for i in self.servers if i[-1] == 1]):
+            num = input("input:")
+            if len(num.split(" ")) > 1:
+                num, set_error_or_recovery = [int(i) for i in num.split(" ")]
+                is_error, is_recovery = False, False
+                self.current_servers = (self.current_servers + 1) % len(self.servers)
+
+                if set_error_or_recovery < ServerStatus.ERROR.value:
+                    is_error = True
+                    self.__error(self.current_servers)
+                else:
+                    is_recovery = True
+                    self.__reset(self.current_servers)
+
+                while True:
+                    if (not is_error and self.servers[self.current_servers][-1] != 1) or is_recovery:
+                        if is_recovery: is_recovery = not is_recovery
+                        self.current_servers = (self.current_servers + 1) % len(self.servers)
+                    else:
+                        current_index = self.current_servers
+                        break
+            else:
+                self.current_servers = (self.current_servers + 1) % len(self.servers)
+                while True:
+                    if self.servers[self.current_servers][-1] == -1:
+                        self.current_servers = (self.current_servers + 1) % len(self.servers)
+                    else:
+                        current_index = self.current_servers
+                        break
+
+            print(f"当前请求：{num} 被分配到 {current_index + 1} 服务器 \n")
+
+    def __error(self, index: int):
+        print(f"设置故障服务器:{index + 1}")
+        self.__set_status(index, -1)
+
+    def __reset(self, index: int):
+        print(f"恢复故障服务器:{index + 1}")
+        self.__set_status(index, 1)
+
+    def __set_status(self, index, target):
+        if index > len(self.servers) or index < 0:
+            raise Exception("index out of resource num")
+
+        self.servers[index] = (index, target)
+
+
+if __name__ == '__main__':
+    no_round_robin = NoWeightRoundRobin()
+    no_round_robin.run()
+
+```
+
